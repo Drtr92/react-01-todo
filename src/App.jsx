@@ -19,6 +19,8 @@ function App() {
     //        1. + 버튼을 사용자가 누를 때
     //           onclick에 제공된 함수가 발동해서 setCount(count + 1), 즉 count state의 값을 +1 해서 저장하게 되고
     //           그러면 count를 감시하던 React엔진이 바뀜을 감지하고 화면에 쓰여진 count 부분을 리렌더링
+    //           ==> App 전체가 다시 그려지는게 아니라, {count} 부분만 리렌더링
+
     //        2. - 버튼을 사용자가 누를 때
     //           onClick에 제공된 함수가 발동해서 setCount(count - 1), 즉 count state의 값을 -1 해서 저장하게 되고
     //           그러면 count를 감시하던 React엔진이 바뀜을 감지하고 화면에 쓰여진 count 부분을 리렌더링
