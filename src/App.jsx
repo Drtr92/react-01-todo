@@ -7,11 +7,13 @@ function App() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (todoValue === "" || todoValue === " ") {return;}
+        if (todoValue.trim() === "") return;
+
         setTodoList([...todoList, todoValue]);
         setTodoValue("");
+    };
 
-    const handleDeleteTodo = (index) => {
+    const handleDeleteTodo = (target) => {
         // todoList에서 지워야되는 대상을 지우는 것
         // 지워야 되는 대상을 특정하려면?
         // 클릭을 한 대상, event가 일어난 대상은 button임. "밥먹기"라는 글자도 아니고 li도 아님
@@ -31,10 +33,11 @@ function App() {
         // reduce
         // find         (x)
 
-        co
+        const result = todoList.filter((_, index) => { return target !== index });
+        setTodoList (result);
+        // React는 todoList state의 값이 바뀌었으니 화면을 리렌더링함
     };
 
-    };
 
     return (
         <>
@@ -66,7 +69,7 @@ function App() {
                     </li>)}
             </ul>
         </>
-    )
+    );
 }
 
 export default App;
