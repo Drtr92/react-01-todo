@@ -11,13 +11,27 @@ function App() {
         setTodoList([...todoList, todoValue]);
         setTodoValue("");
 
-    const handleDeleteTodo = (event) => {
+    const handleDeleteTodo = (index) => {
         // todoList에서 지워야되는 대상을 지우는 것
         // 지워야 되는 대상을 특정하려면?
         // 클릭을 한 대상, event가 일어난 대상은 button임. "밥먹기"라는 글자도 아니고 li도 아님
 
         // button을 통해서는 우리가 삭제해야 하는 "밥먹기" 라는 그 대상 그 자체, 인덱스 번호를 가져올 수 있는 방법이 없음
-        //
+
+        // 아래에 onClick 부분에 함수 안의 함수 형태로 바꾸어, index 번호를 받는 handleDeleteTodo 함수로 바꿨음
+        // 결론 : handleDeleteTodo 함수가 해야하는 일은 들어온 index번호를 받아 todoList의 값을 변경하는 일을 해야함
+
+        // find         (x)
+        // findIndex    (x)
+        // filter       (o) => 걸러낸다 / index 가 아닌 애들만 남기면됨
+        // pop          (x)
+        // some
+        // every
+        // map
+        // reduce
+        // find         (x)
+
+        co
     };
 
     };
