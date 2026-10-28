@@ -1,29 +1,30 @@
-import { useState } from "react";
-import styles from "./App.module.css";
+import {useState} from "react";
 
 function App() {
+
     const [todoList, setTodoList] = useState([]);
     const [todoValue, setTodoValue] = useState("");
 
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         const newText = todoValue.trim();
         if (newText === "") {
             return;
         }
 
-        setTodoList([...todoList, { text: newText, completed: false }]);
+        setTodoList([...todoList, {text: newText, completed: false}]);
         setTodoValue("");
     };
 
-    const handleDeleteTodo = target => {
+    const handleDeleteTodo = (target) => {
+
         const result = todoList.filter((_, index) => {
-            return target !== index;
+            return target !== index
         });
         setTodoList(result);
     };
 
-    const handleToggleTodo = index => {
+    const handleToggleTodo = (index) => {
         // todoList 목록의 [index] 번호 요소의 completed 값을,
         // 그 당사자의 반대값으로 = 할당 해달라
         // todoList[index].completed = !todoList[index].completed;
@@ -38,56 +39,43 @@ function App() {
             if (i !== index) {
                 return item;
             }
-            return { ...item, completed: !item.completed };
-        });
+            return {...item, completed: !item.completed};
+        })
         setTodoList(newTodoList);
-    };
+    }
+
 
     return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>My To_Do ({todoList.length})</h1>
-            <form className={styles.form} onSubmit={handleSubmit}>
+        <>
+            <h1>My ToDo ({todoList.length})</h1>
+            <form onSubmit={handleSubmit}>
                 <input
-                    className={styles.input}
                     type={"text"}
                     placeholder={"Write your to do ..."}
-                    onChange={event => {
-                        setTodoValue(event.target.value);
+                    onChange={(event) => {
+                        setTodoValue(event.target.value)
                     }}
                     value={todoValue}
                 />
-                <button className={styles.submitButton} type="submit">
-                    Add To Do
-                </button>
+                <button type="submit">Add To Do</button>
             </form>
-            <hr className={styles.divider} />
-            <ul className={styles.list}>
-                {todoList.map((item, index) => (
-                    <li key={index} className={styles.listItem}>
-                        <span
-                            className={`${styles.text} ${item.completed ? styles.completed : ""}`}>
-                            {item.text}
-                        </span>
-                        <button
-                            className={styles.actionButton}
-                            onClick={() => {
-                                // 지금 현재의 completed 값을 반대로 저장
-                                return handleToggleTodo(index);
-                            }}>
-                            {item.completed ? "❤️" : "🤍"}
-                        </button>
+            <hr/>
+            <ul>
+                {todoList.map((item, index) => <li key={index}>
+                    {item.text}
+                    <button onClick={() => {
+                        // 지금 현재의 completed 값을 반대로 저장
+                        return handleToggleTodo(index);
+                    }}>
+                        {item.completed ? "❤️" : "🤍"}</button>
 
-                        <button
-                            className={styles.actionButton}
-                            onClick={() => {
-                                return handleDeleteTodo(index);
-                            }}>
-                            ❌
-                        </button>
-                    </li>
-                ))}
+                    <button onClick={() => {
+                        return handleDeleteTodo(index);
+                    }}>❌
+                    </button>
+                </li>)}
             </ul>
-        </div>
+        </>
     );
 }
 
